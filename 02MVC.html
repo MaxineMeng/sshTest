@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVC模式</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="app">   <!-- 定义应用范围 -->
+	<h1>AngularJS第一天</h1>
+	<p ng-controller="myCtrol">今天学{{today}},上周学了{{last}},更早以前学了{{past}}</p>
+	<input type="text" ng-model="a">
+	<input type="text" ng-model="b">
+	<p> {{a}} + {{b}} = {{a+b}}</p>
+</body>
+<script>
+	// 创建模块
+	// AngularJS提供了一个全局变量angular,通过它来创建模块
+	// 有两个参数:字符串:表示ng-app的值,表示定义作用范围
+	//             数组 :存放这个应用所依赖的模块
+	var app = angular.module('app',[]);
+	// 通过app模块创建控制器
+	// myCtrol表示controller的名字 要与<p>ng-controller属性值一致
+	app.controller('myCtrol',["$scope",function($scope){
+		// $scope是一个空的对象,{}
+		$scope.today = "AngularJS";
+		$scope.last = "jQuery";
+		$scope.past = "HTML";
+	}]);
+</script>
+</html>

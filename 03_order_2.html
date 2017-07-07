@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置指令2</title>
+	<script src="../lib/angular.min.js"></script>
+	<style>
+		.red{
+			color:red;
+		}
+		.blue{
+			color:blue;
+		}
+	</style>
+</head>
+<body ng-app="app"> 
+	<div ng-controller="ctrl">
+		<!-- ng-repeat指令 -->
+		<ul>
+			<li ng-repeat="(key,val) in students">{{key+1}}:{{val}}</li>
+		</ul>
+		<ul>
+			<li ng-repeat="(key,val) in students2">{{key}}.{{val}}</li>
+		</ul>
+		<img ng-src="{{path}}"><br>
+
+		<!-- ng-switch -->
+		<select ng-model="select">
+			<option value="01">杨洋</option>
+			<option value="02">刘昊然</option>
+			<option value="03">陈伟霆</option>
+		</select>
+		<div ng-switch="select">
+			<div ng-switch-when="01">
+				<ul>
+					<li>微微一笑很倾城</li>
+					<li>三生三世十里桃花</li>
+					<li>武动乾坤</li>
+				</ul>
+			</div>
+			<div ng-switch-when="02">刘昊然</div>
+			<div ng-switch-when="03">陈伟霆</div>
+		</div>
+		<ul>
+			<li class="red">红色</li>
+			<li ng-class="{blue:true}">蓝色</li>
+		</ul>
+		<input type="text" ng-disabled="true">
+
+		<ul>
+			<li><input type="checkbox" ng-checked="true">杨洋</li>
+			<li><input type="checkbox">刘昊然</li>
+			<select>
+				<option value="1">杨洋</option>
+				<option value="2" ng-selected="true">刘昊然</option>
+				<option value="3">迪丽热巴</option>
+			</select>
+		</ul>		
+	</div>
+	<!-- ng-include -->
+	<div ng-include="'footer.html'"></div>
+</body>
+<script>
+	var app = angular.module('app',[]);
+	app.controller('ctrl',["$scope",function($scope){
+		$scope.students = ["小明","小红","刘昊然","杨洋"];
+		$scope.students2 = [{"姓名":"小明"},{"性别":"男"},{"年龄":6}];
+		$scope.path = "../壁纸/琴女情人节.jpg";
+	}]);		
+</script>
+</html>

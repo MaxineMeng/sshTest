@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>M内置指令</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="app">   
+	<!-- 使用ng-model -->
+	<input type="text" ng-model="msg">
+	<h4>{{msg}}</h4>
+	<!-- 使用ng-controller -->
+	<p ng-controller="ctrl">
+		这是一个ng-controller获取的数据:{{name}}的年龄是{{age}}<br>
+		{{obj.id}}<br>
+		{{studys[2]}}<br>
+		<input type="button" value="点击" ng-click="fun()">
+	</p>
+
+	<!-- ng-bind -->
+	<div ng-controller="ctrl2">
+		<p ng-bind="name"></p>
+	</div>
+
+	<!-- ng-show/hide -->
+	<ul>
+		<li ng-show="0">11</li>
+		<li ng-show="false">22</li>
+		<li ng-show="1">33</li>
+		<li ng-show="true">44</li>
+	</ul>
+
+	<!-- ng-if判断节点是否存在 -->
+	<ul>
+		<li ng-if="true">第一个</li>
+		<li ng-if="0">第二个</li>
+		<li ng-if="false">第三个</li>
+	</ul>
+
+</body>
+<script>
+	var app = angular.module('app',[]);
+	app.controller('ctrl',["$scope",function($scope){
+		$scope.name="Maxine";
+		$scope.age=24;
+		$scope.obj={"id":1001,"name":"Maxine","age":24};
+		$scope.studys = ["Chinese","Math","English"];
+		$scope.fun=function(){
+			console.log(111)
+		}
+	}]);	
+
+	app.controller('ctrl2',["$scope",function($scope){
+		$scope.name="小明";
+	}]);	
+</script>
+</html>
